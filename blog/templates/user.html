@@ -1,0 +1,9 @@
+{% extends "base.html"%}
+
+{% block content %}
+    {% if notfound %}
+        <h1>{{notfound}}</h1>
+    {% else %}
+        <h1>{{username}}</h1>
+    {% endif %}
+{% endblock%}

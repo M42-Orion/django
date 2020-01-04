@@ -7,3 +7,15 @@ def home(request):
     api_request=requests.get("https://api.github.com/users?since=0")
     api = json.loads(api_request.content)
     return render(request,"home.html",{'api':api})
+
+def user(request):
+    if request.method == "POST":
+        import requests
+        import json
+        user = request.POST['user']
+        user_requests = requests.get("https://api.github.com/users?"+user)
+        username = json.loads(user_requests.content)
+        return render(request,"user.html",{'user':user,'username':username})
+    else:
+        notfound = "请输入你想要查询的内容"
+        return render(request,"user.html",{'notfound':notfound})
